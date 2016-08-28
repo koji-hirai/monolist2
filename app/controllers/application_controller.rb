@@ -2,6 +2,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
   
+  def show
+    @item = Item.find(params[:id])
+    @have_users = @item.have_users
+    @want_users = @item.want_users
+  end
+
   private
   def logged_in_user
     unless logged_in?
